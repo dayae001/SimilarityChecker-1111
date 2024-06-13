@@ -4,8 +4,14 @@ from similarity_checker import SimilarityChecker
 
 
 class TestSimilarityChecker(TestCase):
+    def setUp(self):
+        self.game = SimilarityChecker()
+        super().setUp()
+
+    def set_alphas(self, str1, str2):
+        self.game.alpha1 = str1
+        self.game.alpha2 = str2
+
     def test1(self):
-        game = SimilarityChecker()
-        game.alpha1 = 'ABC'
-        game.alpha2 = 'CBA'
-        self.assertEqual(100, game.guess(game.alpha1, game.alpha2))
+        self.set_alphas('ABC', 'CBA')
+        self.assertEqual(100, self.game.guess())
