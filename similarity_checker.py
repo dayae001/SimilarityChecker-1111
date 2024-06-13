@@ -31,9 +31,13 @@ class SimilarityChecker:
         score = 0
         alpha1_set = set(self.alpha1)
         alpha2_set = set(self.alpha2)
+        alpha1_alpha2_intersection = alpha1_set.intersection(alpha2_set)
+        alpha1_alpha2_union = alpha1_set.union(alpha2_set)
 
         if alpha1_set == alpha2_set:
             score += 40
-        elif len(alpha1_set.intersection(alpha2_set)) == 0:
+        elif len(alpha1_alpha2_intersection) == 0:
             score += 0
+        else:
+            score += (len(alpha1_alpha2_intersection) / len(alpha1_alpha2_union)) * 40
         return score
