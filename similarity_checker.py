@@ -10,15 +10,12 @@ class SimilarityChecker:
         return score
 
     def calc_length(self):
-        score = 0
         len1, len2 = self.get_more_long_alpha()
 
-        if len1 == len2:
-            score += 60
-        elif len1 >= len2 * 2:
-            score += 0
-        else:
-            score += (1 - (len1 - len2) / len2) * 60
+        if len1 >= len2 * 2:
+            return 0
+
+        score = (1 - (len1 - len2) / len2) * 60
         return score
 
     def get_more_long_alpha(self):
@@ -27,15 +24,9 @@ class SimilarityChecker:
         return len1, len2
 
     def calc_alpha(self):
-        score = 0
         alpha1_alpha2_intersection, alpha1_alpha2_union, alpha1_set, alpha2_set = self.get_alpha_sets()
 
-        if alpha1_set == alpha2_set:
-            score += 40
-        elif len(alpha1_alpha2_intersection) == 0:
-            score += 0
-        else:
-            score += (len(alpha1_alpha2_intersection) / len(alpha1_alpha2_union)) * 40
+        score = (len(alpha1_alpha2_intersection) / len(alpha1_alpha2_union)) * 40
         return score
 
     def get_alpha_sets(self):
