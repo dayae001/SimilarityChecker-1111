@@ -11,12 +11,20 @@ class SimilarityChecker:
 
     def calc_length(self):
         score = 0
-        
-        if len(self.alpha1) == len(self.alpha2):
+
+        if len(self.alpha1) >= len(self.alpha2):
+            len1 = len(self.alpha1)
+            len2 = len(self.alpha2)
+        else:
+            len2 = len(self.alpha1)
+            len1 = len(self.alpha2)
+
+        if len1 == len2:
             score += 60
-        elif len(self.alpha1) <= len(self.alpha2) * 0.5 or \
-                len(self.alpha1) >= len(self.alpha2) * 2:
+        elif len1 >= len2 * 2:
             score += 0
+        else:
+            score += (1 - (len1 - len2) / len2) * 60
         return score
 
     def calc_alpha(self):

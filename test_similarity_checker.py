@@ -19,3 +19,7 @@ class TestSimilarityChecker(TestCase):
     def test2(self):
         self.set_alphas('A', 'BB')
         self.assertEqual(0, self.game.guess())
+
+    def test3(self):
+        self.set_alphas('AAABB', 'BAA')
+        self.assertEqual(60, self.game.guess())
