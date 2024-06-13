@@ -5,5 +5,7 @@ from similarity_checker import SimilarityChecker
 
 class TestSimilarityChecker(TestCase):
     def test1(self):
-        test = SimilarityChecker()
-        self.assertEqual(1, 1)
+        game = SimilarityChecker()
+        game.alpha1 = 'ABC'
+        game.alpha2 = 'CBA'
+        self.assertEqual(100, game.guess(game.alpha1, game.alpha2))
